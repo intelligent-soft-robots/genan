@@ -1,0 +1,58 @@
+agent.cfg.rollouts:
+  type: choice
+  values: [64, 128, 256, 512, 1024]
+  value_type: int
+agent.cfg.discount_factor:
+  type: range
+  bounds: [0.95, 0.99]
+  value_type: float
+agent.cfg.learning_rate:
+  type: range
+  bounds: [1e-5, 5e-4]
+  value_type: float
+  log_scale: true
+agent.cfg.mini_batches:
+  type: choice
+  values: [2, 4, 8, 16, 32, 64, 128]
+  value_type: int
+agent.cfg.ratio_clip:
+  type: range
+  bounds: [0.05, 0.3]
+  value_type: float
+agent.cfg.learning_epochs:
+  type: choice
+  values: [1, 5, 10]
+  value_type: int
+actuator_net.activation_fn:
+  type: choice
+  values: [tanh, relu, leaky_relu, elu]
+  value_type: str
+actuator_net.num_history_states:
+  type: choice
+  values: [1, 2, 3, 5, 10]
+  value_type: int
+actuator_net.step_size:
+  type: range
+  bounds: [1, 5]
+  value_type: int
+actuator_net.num_neurons:
+  type: choice
+  values: [128, 256, 512]
+  value_type: int
+actuator_net.num_hidden_layers:
+  type: range
+  bounds: [1, 5]
+  value_type: int
+env.reward_scale_pos:
+  type: range
+  bounds: [2.0, 6.0]
+  value_type: float
+env.reward_scale_smoothness:
+  type: range
+  bounds: [0.0, 1.0]
+  value_type: float
+env.reward_pos_exponent:
+  type: range
+  bounds: [50.0, 2000.0]
+  value_type: float
+  log_scale: true

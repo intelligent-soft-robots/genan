@@ -1,0 +1,23 @@
+defaults:
+    - motion_generator: ou
+    - _self_
+
+exp_name: ???
+output_path: exps
+device: simulator # Choices: robot, simulator
+num_trajectories: 2500
+seed: null
+ndp: [0.5, 0.3, 0.4, 0.3]
+control_lim_lower: [-1.0, -1.0, -1.0, -1.0]
+control_lim_upper: [1.0, 1.0, 1.0, 1.0]
+delta_limit: 0.01
+max_velocity_deg_s: [250, 200, 400, 400]
+simulate_encoder_quantization: false
+overwrite: false
+
+hydra:
+  run:
+    dir: ${output_path}/${now:%Y-%m-%d}_${exp_name}
+  job:
+    chdir: true
+  output_subdir: collect_data_config

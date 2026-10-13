@@ -1,0 +1,17 @@
+defaults:
+  - skrl_ppo
+  - _self_
+
+models:
+  num_hidden_layers: 4
+  num_neurons: 128
+  activation_fn: tanh
+
+cfg:
+  discount_factor: 0.9815
+  learning_rate: 9.699e-05
+  entropy_loss_scale: 0.025
+  ratio_clip: 0.1029
+  rollouts: 128
+  mini_batches: 16
+  learning_epochs: 10

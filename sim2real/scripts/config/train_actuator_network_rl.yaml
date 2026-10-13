@@ -1,0 +1,42 @@
+defaults:
+  - actuator_net: step1_hist3
+  - filter: default_filter
+  - agent: skrl_ppo_an_training
+  - _self_
+
+exp_name: ???
+run_name: ???
+end_effector: ???
+extra_eval_exp_name: null
+
+env:
+  num_instances: 1024
+  reward_scale_pos: 4.0
+  reward_scale_smoothness: 0.5
+  reward_pos_exponent: 300.0
+  incomplete_histories: true
+  rollout_len: null
+  gt_position_observation: false
+
+target_frequency: 500.0
+actuation_delay: 1
+
+num_timesteps: 2000000
+
+max_num_trajectories: null
+num_warmup_trajectories: 200
+sim_acc_eval_interval: 5000
+sim_acc_eval_episodes: 200
+sim_acc_eval_steps_to_log: [1, 2, 5, 10, 20, 50, 100, 200, 500]
+
+seed: null # TODO: unused atm
+
+raw_data_path: exps/${exp_name}/raw_data.pkl
+
+hydra:
+  run:
+    dir: exps/${exp_name}/actuator_network_rl/${run_name}
+  job:
+    chdir: true
+  output_subdir: train_actuator_network_rl_config
+

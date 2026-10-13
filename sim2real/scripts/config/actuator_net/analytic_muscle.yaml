@@ -1,0 +1,46 @@
+_target_: sim2real.actuator_network.analytic_muscle_model.AnalyticMuscleEnsemble
+ensemble_size: 1
+step_size: 1
+num_history_states: 20
+delta_history: false
+pressure_input: false
+velocity_input: true
+position_history: false
+velocity_history: false
+control_history: true
+timestep: 0.002
+
+moment_arms:
+  - [0.0385, 0.0385]
+  - [0.0251, 0.0251]
+  - [0.0235, 0.0235]
+  - [0.017, 0.017]
+fit_force_gains: true
+# The pressure lag is identified beforehand from the recorded desired/observed pressures, which
+# measure it directly; refitting it against joint motion would only let it absorb effects that
+# belong downstream of the pressure.
+fit_pressure_lag: false
+# +1 if the antagonist (second) muscle of the pair drives the joint angle positive.
+antagonist_pull_signs: [1.0, 1.0, 1.0, 1.0]
+
+# FESTO DMSP-20-1200N-AM-CM
+nominal_length: 1.2
+inner_diameter: 0.020
+
+# Cocontraction level and valve pressure limits. These must match the dataset that the model was
+# identified on; sysid_muscle_model.py checks them against robot_config.json.
+ndp: [0.5, 0.3, 0.4, 0.3]
+min_pressures_ago: [13700, 17500, 12700, 12600]
+min_pressures_antago: [13900, 20700, 12700, 12600]
+max_pressures_ago: [22000, 22300, 25200, 21900]
+max_pressures_antago: [21000, 22100, 25200, 21100]
+
+init_tendon_slack: 0.1
+# Only the total lag is identifiable from the recorded pressures: a dead time and a time constant
+# trade off along an almost perfectly flat valley, so the lag is a single time constant.
+# sysid_muscle_model.py overrides this with a fit on the dataset it is run on.
+init_lag_time_constant: 0.06
+init_coulomb_torque: 0.5
+init_friction_coefficient: 0.05
+init_viscous_damping: 0.05
+velocity_smoothing: 0.02

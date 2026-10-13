@@ -1,0 +1,2 @@
+class WrongTimestampException(Exception):
+    pass

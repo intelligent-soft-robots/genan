@@ -1,0 +1,21 @@
+defaults:
+  - backend: mujoco
+  - _self_
+
+checkpoint_name: "best_agent.pickle"
+
+seed: 42
+train_logs: ???
+num_episodes: 20
+force_cpu: false
+overwrite_terminate_on_success: false
+
+out_dir_suffix: ""
+out_dir: out/${train_logs}${out_dir_suffix}
+
+hydra:
+  run:
+    dir: ${out_dir}
+  job:
+    chdir: true
+  output_subdir: evaluate_transfer_config

@@ -1,0 +1,10 @@
+<mujoco model="table">
+    <worldbody>
+        <body name="table">
+            <geom name="table_geom" type="box" size="0.7625 1.37 0.02" rgba="0.05 0.3 0.23 1.0"/>
+            <body name="net" pos="0.0 0.0 0.02">
+                <geom name="net_geom" type="box" pos="0.0 0.0 0.07625" size="0.915 0.01 0.07625" rgba="0.1 0.1 0.1 0.4"/>
+            </body>
+        </body>
+    </worldbody>
+</mujoco>

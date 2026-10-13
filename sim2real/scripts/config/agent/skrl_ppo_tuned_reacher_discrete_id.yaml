@@ -1,0 +1,17 @@
+defaults:
+  - skrl_ppo
+  - _self_
+
+models:
+  num_hidden_layers: 4
+  num_neurons: 64
+  activation_fn: leaky_relu
+
+cfg:
+  discount_factor: 0.9851
+  learning_rate: 3.549e-04
+  entropy_loss_scale: 0.025
+  ratio_clip: 0.06149
+  rollouts: 128
+  mini_batches: 16
+  learning_epochs: 5

@@ -1,0 +1,38 @@
+learning_rate:
+  type: range
+  bounds: [1e-6, 1e-3]
+  value_type: float
+  log_scale: true
+weight_decay:
+  type: range
+  bounds: [1e-8, 1e-2]
+  value_type: float
+  log_scale: true
+actuator_net.activation_fn:
+  type: choice
+  values: [tanh, relu, leaky_relu, elu]
+  value_type: str
+#actuator_net.num_history_states:
+#  type: choice
+#  values: [1, 2, 3, 5, 10]
+#  value_type: int
+#actuator_net.step_size:
+#  type: range
+#  bounds: [1, 5]
+#  value_type: int
+actuator_net.num_neurons:
+  type: choice
+  values: [128, 256, 512]
+  value_type: int
+actuator_net.num_hidden_layers:
+  type: range
+  bounds: [1, 5]
+  value_type: int
+#actuator_net.use_batch_norm:
+#  type: choice
+#  values: [true, false]
+#  value_type: bool
+loss.train_batch_size:
+  type: choice
+  values: [128, 256, 512, 1024]
+  value_type: int

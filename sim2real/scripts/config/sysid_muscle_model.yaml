@@ -1,0 +1,45 @@
+defaults:
+  - actuator_net: analytic_muscle
+  - filter: default_filter
+  - _self_
+
+exp_name: ???
+run_name: ???
+end_effector: ???
+
+seed: 42
+target_frequency: 500
+actuation_delay: 1
+num_warmup_trajectories: 200
+max_num_trajectories: null
+
+calibrate_pressure_lag: true
+lag_calibration_trajectories: 100
+shared_pressure_lag: true
+lag_time_constant_grid:
+  [
+    0.002, 0.005, 0.0075, 0.010, 0.0125, 0.015, 0.0175, 0.020,
+    0.025, 0.030, 0.035, 0.040, 0.045, 0.050,
+  ]
+max_lag_time_constant: 0.05
+
+num_restarts: 8
+
+gradient_clip_norm: 1.0
+rollout_len: 300
+num_steps: 3000
+batch_size: 128
+learning_rate: 0.015
+lr_decay: true
+
+eval_interval: 100
+sim_acc_eval_episodes: 100
+sim_acc_eval_steps_per_episode: 500
+save_models: true
+
+hydra:
+  run:
+    dir: exps/${exp_name}/actuator_network/${run_name}
+  job:
+    chdir: true
+  output_subdir: train_actuator_network_config

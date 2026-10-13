@@ -1,0 +1,42 @@
+<mujoco model="cup">
+    <asset>
+        <mesh name="cup" file="cup.stl" maxhullvert="50"/>
+        <mesh name="cup_connector_arm_side" file="cup_connector_arm_side.stl" maxhullvert="50"/>
+        <mesh name="cup_connector_cup_side" file="cup_connector_cup_side.stl" maxhullvert="50"/>
+    </asset>
+    <worldbody>
+        <body name="cup_connector_arm_side" pos="0.265 0.0 0.0" euler="180.0 90.0 0.0">
+            <inertial pos="1.840775e-08 1.802115e-03 -7.174252e-03" mass="0.03397" fullinertia="2.188790e-05 2.247503e-05 2.137988e-06 -5.002915e-12 -7.239607e-12 -1.636929e-06"/>
+            <geom name="cup_connector_arm_side_vis" type="mesh" mesh="cup_connector_arm_side" rgba="0.2 0.2 0.2 1.0" mass="0.0" contype="0" conaffinity="0"/>
+            <geom name="cup_connector_arm_side_col1" type="cylinder" size="0.011 0.005" pos="0.0 0.0 0.0025" euler="0.0 0.0 0.0" rgba="1.0 0.0 0.0 0.0"/>
+            <geom name="cup_connector_arm_side_col2" type="sphere" size="0.018" pos="0.0 0.0 0.021248" rgba="1.0 0.0 0.0 0.0"/>
+            <body name="cup_connector_cup_side" pos="0.0 0.0 0.021248" euler="0.0 0.0 0.0">
+                <inertial pos="-1.897616e-08 -4.613387e-03 1.028435e-02" mass="0.01422" fullinertia="3.930286e-06 4.577808e-06 9.093680e-07 4.297814e-12 -1.502871e-12 -1.382483e-08"/>
+                <geom name="cup_connector_cup_side_vis" type="mesh" mesh="cup_connector_cup_side" rgba="0.2 0.2 0.2 1.0" mass="0.0" contype="0" conaffinity="0"/>
+                <geom name="cup_connector_cup_side_col" type="cylinder" size="0.011 0.0154" pos="0.0 0.0 0.0305" euler="0.0 0.0 0.0" rgba="1.0 0.0 0.0 0.0"/>
+                <body name="cup" pos="-0.011183 0.0 0.1035" euler="0.0 -90.0 0.0">
+                    <!-- TODO: Inertia calculated with old STL -->
+                    <inertial pos="-7.780677e-03 5.176775e-04 -3.631757e-02" mass="0.05884" fullinertia="9.284780e-05 1.189151e-04 1.281511e-04 1.711880e-06 1.117917e-05 -7.420404e-07"/>
+                    <!-- Visualization geoms -->
+                    <geom name="cup_vis" type="mesh" mesh="cup" rgba="0.2 0.2 0.2 1.0" mass="0.0" contype="0" conaffinity="0"/>
+                    <!-- Collision geoms -->
+                    <geom name="cup_col_bottom" type="cylinder" size="0.03 0.002" pos="0 0 -0.07729" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_0" type="box" size="0.002 0.023 0.043" pos="0.0385 0 -0.0395" euler="0.0 25.944480 0.0" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_45" type="box" size="0.002 0.023 0.043" pos="0.0272 0.0272 -0.0395" euler="-18.984817 18.020618 48.037538" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_90" type="box" size="0.002 0.023 0.043" pos="0 0.0385 -0.0395" euler="-25.944480 0.0 90.0" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_135" type="box" size="0.002 0.023 0.043" pos="-0.0272 0.0272 -0.0395" euler="-18.984817 -18.020618 131.962462" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_180" type="box" size="0.002 0.023 0.043" pos="-0.0385 0 -0.0395" euler="0.0 -25.944480 180.0" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_225" type="box" size="0.002 0.023 0.043" pos="-0.0272 -0.0272 -0.0395" euler="18.984817 -18.020618 -131.962462" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_270" type="box" size="0.002 0.023 0.043" pos="0 -0.0385 -0.0395" euler="25.944480 0.0 -90.0" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <geom name="cup_col_wall_315" type="box" size="0.002 0.023 0.043" pos="0.0272 -0.0272 -0.0395" euler="18.984817 18.020618 -48.037538" solref="0.01 0.5" rgba="1.0 0.0 0.0 0.0"/>
+                    <site name="string_attach" pos="0.0 0.0 -0.079290" size="0.005" rgba="0.7 0.7 0.7 1.0"/>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+    <contact>
+        <exclude body1="cup_connector_arm_side" body2="cup_connector_cup_side"/>
+        <exclude body1="cup_connector_arm_side" body2="cup"/>
+        <exclude body1="cup_connector_cup_side" body2="cup"/>
+    </contact>
+</mujoco>

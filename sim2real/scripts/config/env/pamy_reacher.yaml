@@ -1,0 +1,18 @@
+_target_: sim2real.rl_tasks.pamy_reacher.pamy_reacher.PamyReacherEnv
+num_instances: 1024
+episode_length_s: 2.0
+action_repeat: 5
+history_observations: false
+velocity_observations: true
+max_control_diff: 0.01
+reset_ctrl_lower: [-0.5, -0.6, -0.6, -0.5]
+reset_ctrl_upper: [0.5, 0.0, 0.4, 0.5]
+workspace_limits_lower_deg: [-50.0, 20.0, -50.0, -50.0]
+workspace_limits_upper_deg: [50.0, 60.0, 50.0, 50.0]
+joint_limits_lower_deg: [-90.0, -75.0, -85.0, -85.0]
+joint_limits_upper_deg: [90.0, 85.0, 85.0, 85.0]
+action_penalty_weight: 5000.0
+velocity_penalty_weight: 0.0
+an_disagreement_penalty_weight: 0.1
+target_dist_loss_norm: 2
+dofs_goal: [0, 1, 2, 3]

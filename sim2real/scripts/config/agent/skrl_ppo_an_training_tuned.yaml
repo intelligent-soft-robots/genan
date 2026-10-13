@@ -1,0 +1,12 @@
+defaults:
+  - skrl_ppo_an_training
+  - _self_
+
+cfg:
+  discount_factor: 0.9783
+  learning_rate: 2.166e-05
+  entropy_loss_scale: 0.025
+  ratio_clip: 0.2676
+  rollouts: 1024
+  mini_batches: 16
+  learning_epochs: 5

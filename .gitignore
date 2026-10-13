@@ -1,0 +1,14 @@
+.idea
+__pycache__
+htcondor_logs
+logs
+out
+*.npz
+*.pt
+*.pdf
+exps
+an_rl_tuning
+an_tuning
+build
+plots
+sim2real.egg-info

@@ -1,0 +1,34 @@
+defaults:
+  - train_actuator_network
+  - tune_an: tune_an
+  - override hydra/sweeper: ax
+  - override hydra/launcher: joblib
+  - _self_
+
+target_frequency: 500
+
+sim_acc_eval_interval: 10
+plot_dataset_visualizations: false
+
+epoch_idx: null
+run_log_dir: an_tuning/${exp_name}/${run_name}
+n_jobs: 2   # To make the number of jobs accessible from the script (to set XLA_PYTHON_CLIENT_MEM_FRACTION properly)
+
+hydra:
+  launcher:
+    n_jobs: ${n_jobs}
+    backend: loky
+  mode: MULTIRUN
+  run:
+    dir: ${run_log_dir}
+  sweep:
+    dir: ${run_log_dir}
+  job:
+    chdir: true
+  output_subdir: train_actuator_network_config
+  sweeper:
+    ax_config:
+      early_stop:
+        max_epochs_without_improvement: 50
+      max_trials: 500
+      params: ${tune_an}

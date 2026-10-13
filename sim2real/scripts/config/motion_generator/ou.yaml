@@ -1,0 +1,20 @@
+_target_:  sim2real.data_collection.motion_generators.OrnsteinUhlenbeckMotionGenerator
+# TODO: Duration and timestep should be defined in the collect_data_no_pc script
+duration: 2.0
+generator_timestep: 0.002
+lower_limits: [-1.0, -1.0, -1.0, -1.0]
+upper_limits: [1.0, 1.0, 1.0, 1.0]
+theta: 0.001
+sigma_min: 0.01
+sigma_max: 0.01
+mu: [0.0, 0.0, 0.0, 0.0]
+mu_adaptation_per_ep: null  # default if turned on: 0.005
+max_mu_adaptation: 0.5
+mean_update_coef: 0.01
+target_pos_mean_deg: [0.0, 40.0, 0.0, 0.0]
+ratio_linear_segments: 0.0
+min_len_linear_segments: 20
+max_len_linear_segments: 100
+linear_segment_noise_std: 0.0025
+action_repeat: 5
+noise_distribution: normal

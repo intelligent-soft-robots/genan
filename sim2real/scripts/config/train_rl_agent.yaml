@@ -1,0 +1,23 @@
+defaults:
+  - agent: skrl_ppo
+  - env: pamy_reacher
+  - backend: mjx
+  - _self_
+
+num_timesteps: 300000
+
+seed: null # TODO: unused atm
+
+run_name: ""
+log_dir: logs
+run_log_dir: ${log_dir}/train/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run_name}
+
+
+hydra:
+  run:
+    dir: ${run_log_dir}
+  sweep:
+    dir: ${run_log_dir}
+  job:
+    chdir: true
+  output_subdir: train_rl_agent_config

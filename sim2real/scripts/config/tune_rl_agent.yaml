@@ -1,0 +1,36 @@
+defaults:
+  - agent: skrl_ppo
+  - env: pamy_reacher
+  - backend: mjx
+  - tune_rl: tune_rl_agent_ppo
+  - override hydra/sweeper: ax
+  - override hydra/launcher: joblib
+  - _self_
+
+num_timesteps: 150000
+
+seed: null # TODO: unused atm
+
+run_name: ""
+log_dir: logs
+run_log_dir: ${log_dir}/tune/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run_name}
+
+
+hydra:
+  mode: MULTIRUN
+  run:
+    dir: ${run_log_dir}
+  sweep:
+    dir: ${run_log_dir}
+  job:
+    chdir: true
+  output_subdir: train_rl_agent_config
+  sweeper:
+    ax_config:
+      early_stop:
+        max_epochs_without_improvement: 200
+      max_trials: 500
+      params: ${tune_rl}
+  launcher:
+    n_jobs: 3
+    backend: loky

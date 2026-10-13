@@ -1,0 +1,5 @@
+_target_: sim2real.actuator_network.loss.PositionPredictionLoss
+train_batch_size: 512
+eval_batch_size: 10000
+max_episode_length_s: null
+bootstrapping: false

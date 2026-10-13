@@ -1,0 +1,9 @@
+_target_: sim2real.actuator_network.loss.PositionAccuracyLoss
+end_effector: ${..end_effector}
+train_batch_size: 512
+eval_batch_size: 10000
+rollout_len: 1
+incomplete_histories: true
+normalize_loss: true
+stop_gradients_an_input: true
+bootstrapping: false

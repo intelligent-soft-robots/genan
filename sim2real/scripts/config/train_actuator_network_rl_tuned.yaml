@@ -1,0 +1,11 @@
+defaults:
+  - train_actuator_network_rl
+  - override actuator_net: rl_tuned
+  - override agent: skrl_ppo_an_training_tuned
+  - _self_
+
+env:
+  reward_scale_pos: 5.769
+  reward_scale_smoothness: 0.6789
+  reward_pos_exponent: 70.23
+  rollout_len: -1

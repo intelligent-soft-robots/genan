@@ -1,0 +1,10 @@
+_target_:  sim2real.data_collection.motion_generators.SineMotionGenerator
+# TODO: Duration and timestep should be defined in the collect_data_no_pc script
+duration: 2.0
+generator_timestep: 0.002
+lower_limits: [-1.0, -1.0, -1.0, -1.0]
+upper_limits: [1.0, 1.0, 1.0, 1.0]
+noise_scale_min: 0.02
+noise_scale_max: 0.02
+frequencies_low: [0.0, 0.0, 0.0, 0.0]
+frequencies_high: [0.5, 0.5, 0.5, 0.5]

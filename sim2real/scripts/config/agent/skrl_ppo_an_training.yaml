@@ -1,0 +1,65 @@
+_target_: skrl.agents.jax.ppo.PPO
+
+models:
+  _target_: sim2real.rl_tasks.agent.create_models
+  num_neurons: ${actuator_net.num_neurons}
+  num_hidden_layers: ${actuator_net.num_hidden_layers}
+  activation_fn: ${actuator_net.activation_fn}
+  observation_space: ??
+  action_space: ??
+  initial_log_std: 0.0
+  device: null
+
+cfg:
+  _target_: skrl.agents.jax.ppo.ppo_cfg.PPO_CFG
+  rollouts: 128                # number of rollouts before updating
+  learning_epochs: 5           # number of learning epochs during each update
+  mini_batches: 8              # number of mini batches during each learning epoch
+
+  discount_factor: 0.99        # discount factor (gamma)
+  lambda_: 0.95                 # TD(lambda) coefficient (lam) for computing returns and advantages
+
+  learning_rate: 5e-4                  # learning rate
+  learning_rate_scheduler: null        # learning rate scheduler function (see optax.schedules)
+  learning_rate_scheduler_kwargs: {}   # learning rate scheduler's kwargs (e.g. {step_size: 1e-3})
+
+  observation_preprocessor: # observation preprocessor class (see skrl.resources.preprocessors)
+    _target_: hydra.utils.get_class
+    path: skrl.resources.preprocessors.jax.RunningStandardScaler
+  observation_preprocessor_kwargs: # observation preprocessor's kwargs (e.g. {size: env.observation_space})
+    size: ??
+    clip_threshold: !!float inf
+  state_preprocessor: null             # state preprocessor class (see skrl.resources.preprocessors)
+  state_preprocessor_kwargs: null      # state preprocessor's kwargs (e.g. {size: env.observation_space})
+  value_preprocessor: # value preprocessor class (see skrl.resources.preprocessors)
+    _target_: hydra.utils.get_class
+    path: skrl.resources.preprocessors.jax.RunningStandardScaler
+  value_preprocessor_kwargs: # value preprocessor's kwargs (e.g. {size: 1})
+    size: 1
+    clip_threshold: !!float inf
+
+  random_timesteps: 0          # random exploration steps
+  learning_starts: 0           # learning starts after this many steps
+
+  grad_norm_clip: 1.0              # clipping coefficient for the norm of the gradients
+  ratio_clip: 0.2                  # clipping coefficient for computing the clipped surrogate objective
+  value_clip: 0.2                  # clipping coefficient for computing the value loss
+
+  entropy_loss_scale: 0.0      # entropy loss scaling factor
+  value_loss_scale: 1.0        # value loss scaling factor
+
+  kl_threshold: 0.008          # KL divergence threshold for early stopping
+
+  rewards_shaper: null         # rewards shaping function: Callable(reward timestep timesteps) -> reward
+  time_limit_bootstrap: true   # bootstrap at timeout termination (episode truncation)
+
+  experiment:
+    directory: .            # experiment's parent directory
+    experiment_name: .      # experiment name
+    write_interval: 1000    # TensorBoard writing interval (timesteps)
+
+    checkpoint_interval: 10000     # interval for checkpoints (timesteps)
+    store_separately: false        # whether to store checkpoints separately
+
+    wandb: false             # whether to use Weights & Biases
+    wandb_kwargs: {}          # wandb kwargs (see https://docs.wandb.ai/ref/python/init)

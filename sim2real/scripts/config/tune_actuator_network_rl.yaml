@@ -1,0 +1,39 @@
+defaults:
+  - train_actuator_network_rl
+  - tune_an_rl: tune_an_rl
+  - override hydra/sweeper: ax
+  - override hydra/launcher: joblib
+  - _self_
+
+target_frequency: 500.0
+actuation_delay: 1
+
+num_timesteps: 200000
+
+max_num_trajectories: null
+num_warmup_trajectories: 200
+sim_acc_eval_interval: 5000
+sim_acc_eval_episodes: 200
+sim_acc_eval_steps_to_log: [1, 2, 5, 10, 20, 50, 100, 200, 500]
+
+epoch_idx: null
+run_log_dir: an_rl_tuning/${exp_name}/${run_name}
+
+hydra:
+  mode: MULTIRUN
+  run:
+    dir: ${run_log_dir}
+  sweep:
+    dir: ${run_log_dir}
+  job:
+    chdir: true
+  output_subdir: train_actuator_network_rl_config
+  sweeper:
+    ax_config:
+      early_stop:
+        max_epochs_without_improvement: 200
+      max_trials: 500
+      params: ${tune_an_rl}
+  launcher:
+    n_jobs: 3
+    backend: loky

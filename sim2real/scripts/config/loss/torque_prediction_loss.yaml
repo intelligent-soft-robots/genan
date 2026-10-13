@@ -1,0 +1,8 @@
+_target_: sim2real.actuator_network.loss.TorquePredictionLoss
+train_batch_size: 512
+eval_batch_size: 10000
+huber_delta: null
+max_episode_length_s: null
+error_scaling_factor: 1.0
+l1_normalization: false
+bootstrapping: false

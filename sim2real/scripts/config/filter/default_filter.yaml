@@ -1,0 +1,2 @@
+_target_: sim2real.data_processing.filter.filter.DefaultFilter
+interpolate: true

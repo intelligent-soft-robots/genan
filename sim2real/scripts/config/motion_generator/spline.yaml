@@ -1,0 +1,11 @@
+_target_:  sim2real.data_collection.motion_generators.SplineMotionGenerator
+duration: 2.0
+generator_timestep: 0.002
+lower_limits: [-1.0, -1.0, -1.0, -1.0]
+upper_limits: [1.0, 1.0, 1.0, 1.0]
+noise_scale_min: 0.0005
+noise_scale_max: 0.003
+points_mean: [0.0, -0.1, 0.0, 0.0]
+points_std: [0.45, 0.5, 0.5, 0.5]
+distance_between_points_s: 0.5
+max_avg_ctrl_diff: 0.01

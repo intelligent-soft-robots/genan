@@ -1,0 +1,15 @@
+_target_: sim2real.rl_tasks.physics_backend.o80_backend.O80Backend
+dt: 0.002
+real_robot: false
+mujoco_id: simulation
+history_length: 4
+ndp: [0.5, 0.3, 0.4, 0.3]
+init_commands_limit_lower: [-0.5, 0.05, -0.2, -0.5]
+init_commands_limit_upper: [0.5, 0.1, 0.2, 0.5]
+simulate_encoder_quantization: false
+table_position: [0.6, 1.5, 0.76]
+graphics: false
+exception_on_incorrect_timestamp: true
+force_real_time_mode: false
+context: racket
+ball_pos_buffer_length: 5

@@ -1,0 +1,15 @@
+_target_: sim2real.rl_tasks.physics_backend.mjx_backend.MjxBackend
+num_instances: 1024
+actuator_net_exp_name: ???
+actuator_net_name: ???
+simulate_encoder_quantization: ???
+fixed_model_idx: null
+simulation_precision: single
+num_reset_steps: 500
+context: racket
+simulated_ball_tracking_noise_std: 0.005
+simulated_ball_tracking_dropout_rate: 0.05
+ball_pos_buffer_length: 5
+table_position: [0.6, 1.5, 0.76]
+tt_ball_augment_trans_min: [-0.05, -0.01, -0.01]
+tt_ball_augment_trans_max: [0.05, 0.01, 0.01]

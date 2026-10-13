@@ -1,0 +1,13 @@
+<mujoco model="racket">
+    <asset>
+        <mesh name="racket_vis" file="racket.stl" maxhullvert="50"/>
+        <mesh name="racket_col" file="racket_convex.stl" maxhullvert="50"/>
+    </asset>
+    <worldbody>
+        <body name="racket" pos="0.265 0.0 0.0" euler="90.0 0.0 -90.0">
+            <inertial pos="6.557258e-07 9.048208e-02 5.027647e-07" mass="0.37135" fullinertia="9.440278e-04 5.109374e-04 1.440688e-03 -2.597221e-08 3.919952e-09 9.726087e-09"/>
+            <geom name="racket_vis" type="mesh" mesh="racket_vis" rgba="0.2 0.2 0.2 1.0" contype="0" conaffinity="0"/>
+            <geom name="racket_col" type="mesh" rgba="1.0 0.0 0.0 0.0" mesh="racket_col"/>
+        </body>
+    </worldbody>
+</mujoco>

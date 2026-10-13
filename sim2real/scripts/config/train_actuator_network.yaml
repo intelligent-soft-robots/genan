@@ -1,0 +1,40 @@
+defaults:
+  - actuator_net: step1_hist3
+  - filter: default_filter
+  - loss: position_accuracy_loss
+  - _self_
+
+exp_name: ???
+run_name: ???
+end_effector: ???
+extra_eval_exp_name: null
+init_checkpoint_exp_name: null
+init_checkpoint_an_name: null
+
+seed: null
+
+target_frequency: 500
+actuation_delay: 1
+
+num_epochs: ???
+log_interval: 1
+val_interval: 1
+sim_acc_eval_interval: ${val_interval}
+sim_acc_eval_episodes: 200
+learning_rate: 1e-4
+weight_decay: 0.0
+max_num_trajectories: null
+num_warmup_trajectories: 200
+plot_dataset_visualizations: true
+
+epoch_idx: null
+save_models: true
+
+raw_data_path: exps/${exp_name}/raw_data.pkl
+
+hydra:
+  run:
+    dir: exps/${exp_name}/actuator_network/${run_name}
+  job:
+    chdir: true
+  output_subdir: train_actuator_network_config
